@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pet Parents</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div id="cart-icon-container" onclick="window.location.href='Cart.html'">
+    🛒 <span id="cart-count">0</span>
+  </div>
+
+  <header>
+    <h1>Pet Parents</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="Eat 3.html">Eat</a>
+    <a href="Walk 3.html">Walk</a>
+    <a href="Wear 3.html">Wear</a>
+    <a href="Play 3.html">Play</a>
+    <a href="Sale 3.html">Sale</a>
+    <a href="Cart.html">Cart</a>
+  </nav>
+
+  <main>
+    <p style="text-align: center; font-weight: bold;">
+      Winter is upon us and it's our duty to protect our poochies. Shop our new winter collection.
+    </p>
+
+    <div class="product-grid">
+      <div class="product-card" onclick="addToCart('Winter White onesie for dogs')">
+        <img src= "C:\Users\Chenesani\Downloads\WMD\Winter White coat.png" alt="Winter White onesie for dogs" />
+        <p class="product-name">Winter White Onesie for Dogs</p>
+        <p class="price">BWP 270.00</p>
+      </div>
+
+      <div class="product-card" onclick="addToCart('Winter Booties')">
+        <img src="C:\Users\Chenesani\Downloads\WMD\Winter Booties.png" alt="Winter Booties" />
+        <p class="product-name">Winter Booties</p>
+        <p class="price">BWP 100.00</p>
+      </div>
+
+      <div class="product-card" onclick="addToCart('Mint Turtle Neck Sweater for Cats and Dogs')">
+        <img src="C:\Users\Chenesani\Downloads\WMD\Mint turtle neck sweater for cats and dogs.png" alt="Mint Turtle Neck Sweater" />
+        <p class="product-name">Mint Turtle Neck Sweater for Cats and Dogs</p>
+        <p class="price">BWP 160.00</p>
+      </div>
+
+      <div class="product-card" onclick="addToCart('Hand Knit Sweater for Dogs')">
+        <img src="C:\Users\Chenesani\Downloads\WMD\Hand Knit Sweater for Dogs.png" alt="Hand Knit Sweater for Dogs" />
+        <p class="product-name">Hand Knit Sweater for Dogs</p>
+        <p class="price">BWP 160.00</p>
+      </div>
+
+      <div class="product-card" onclick="addToCart('Denim and Khaki Dog Jacket')">
+        <img src="C:\Users\Chenesani\Downloads\WMD\Denim and khaki dog Jacket.png" alt="Denim and Khaki Dog Jacket" />
+        <p class="product-name">Denim and Khaki Dog Jacket</p>
+        <p class="price">BWP 450.00</p>
+      </div>
+
+      <div class="product-card" onclick="addToCart('Diamond Knit Alpaca Dog Sweater')">
+        <img src="C:\Users\Chenesani\Downloads\WMD\Diamond knit Alpaca Dog Sweater.png" alt="Diamond Knit Alpaca Dog Sweater" />
+        <p class="product-name">Diamond Knit Alpaca Dog Sweater</p>
+        <p class="price">BWP 240.00</p>
+      </div>
+
+      <div class="product-card" onclick="addToCart('Turtle Teddy Dog Fleece')">
+        <img src="C:\Users\Chenesani\Downloads\WMD\Turtle Teddy dog Fleece.png" alt="Turtle Teddy Dog Fleece" />
+        <p class="product-name">Turtle Teddy Dog Fleece</p>
+        <p class="price">BWP 220.00</p>
+      </div>
+
+      <div class="product-card" onclick="addToCart('Puppia Dog Puffer')">
+        <img src="C:\Users\Chenesani\Downloads\WMD\Puppia harness.png" alt="Puppia Dog Puffer" />
+        <p class="product-name">Puppia Dog Puffer</p>
+        <p class="price">BWP 200.00</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-around; max-width: 1000px; margin: auto;">
+      <div style="margin: 1em;">
+        <h3 style="border-bottom: 1px solid #fff; padding-bottom: 0.5em;">ABOUT & CONTACT</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="About us.html" style="color:white;">Who We Are</a></li>
+          <li><a href="#" style="color:white;">Contact Us</a></li>
+        </ul>
+      </div>
+      <div style="margin: 1em;">
+        <h3 style="border-bottom: 1px solid #fff; padding-bottom: 0.5em;">MORE TREATS</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="FAQ.html" style="color:white;">FAQs</a></li>
+          <li><a href="Blog.html" style="color:white;">Blog</a></li>
+          <li><a href="Veterinary Services.html" style="color:white;">Veterinary Services</a></li>
+        </ul>
+      </div>
+      <div style="margin: 1em;">
+        <h3 style="border-bottom: 1px solid #fff; padding-bottom: 0.5em;">FOLLOW US</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="#" style="color:white;">Facebook</a></li>
+          <li><a href="#" style="color:white;">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <p style="text-align: center; margin-top: 2em;">&copy; 2025 Pet Parents. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function addToCart(product) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const itemIndex = cart.findIndex(item => item.product === product);
+
+      if (itemIndex !== -1) {
+        cart[itemIndex].quantity += 1;
+      } else {
+        cart.push({ product, quantity: 1 });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('cart-count').innerText = count;
+    }
+
+    window.onload = updateCartCount;
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
